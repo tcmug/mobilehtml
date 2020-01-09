@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+
+        a, button, input {
+            outline: 0 !important;
+        }
+
+        a {
+	        -webkit-tap-highlight-color: #0000
+        }
+
+        :root {
+            --tab-bar-height: 20px;
+        }
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        .tabs {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            z-index: 100;
+            align-items: flex-end;
+        }
+        .tabs > a {
+            z-index: 100;
+            flex: 1 1 50%;
+            background: #EEE;
+            text-align: center;
+            color: #000;
+            text-decoration: none;
+            border-right: 1px solid #BBB;
+            user-select: none;
+        }
+        .tabs > a:last-child {
+            border-right: none;
+        }
+        .tabs > .contents {
+            overflow: hidden;
+            display: flex;
+            width: auto;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: auto;
+            transition: transform 0.333s ease-in-out;
+        }
+
+        .tabs > a:nth-child(1):target ~ .contents {
+            transform: translateX(0);
+        }
+
+        .tabs > a:nth-child(2):target ~ .contents {
+            transform: translateX(-100vw);
+        }
+
+        .tabs > a:nth-child(3):target ~ .contents {
+            transform: translateX(-200vw);
+        }
+
+        .tabs > .contents > section {
+            flex: 1 1 100%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+            background: #FFF;
+            width: 100vw;
+            height: calc(100vh - var(--tab-bar-height));
+            color: #000;
+        }
+
+        .contents > section > div {
+            border: 1px solid black;
+        }
+    </style>
+    <title>Mobile test</title>
+</head>
+<body>
+    <section class="tabs">
+        <a id="1" href="#1">Left</a>
+        <a id="2" href="#2">Center</a>
+        <a id="3" href="#3">Right</a>
+        <section class="contents">
+            <section>
+                <div>
+                    <h1>1.</h1>
+                    Ut purus nunc, porttitor vel aliquam non, auctor id justo. Cras fermentum tempus dictum. In hac habitasse platea dictumst. Etiam euismod nunc vitae varius malesuada. Praesent sagittis massa dignissim aliquet interdum. Maecenas porttitor ac metus pharetra viverra. Phasellus a luctus tortor.
+                    Integer venenatis sagittis porttitor. Nulla vitae nulla eu felis tristique pulvinar. In faucibus ultrices mattis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse eu mi accumsan, semper ex in, suscipit lacus. Vivamus eros ex, maximus a dignissim ac, egestas ut magna. Suspendisse est augue, pellentesque in aliquam vel, scelerisque tincidunt justo. Proin non orci tincidunt, scelerisque ipsum id, molestie sapien.
+                    Aliquam consectetur finibus orci, gravida ornare metus dictum ultrices. Duis et molestie odio. Quisque pellentesque, lorem ac ultrices tristique, mi leo malesuada felis, sit amet posuere augue ipsum sit amet tortor. Donec ex leo, ullamcorper ac pellentesque et, ultrices ut quam. Curabitur sagittis sodales turpis et pellentesque. Vivamus quis turpis quis metus porttitor placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In malesuada sapien eget nibh rutrum, quis volutpat odio hendrerit. Sed sed dolor egestas, rutrum nunc ut, aliquam dui. Quisque feugiat feugiat turpis sed rhoncus. Maecenas viverra eleifend auctor. Donec venenatis magna vel magna lacinia scelerisque in at nisi. Morbi mauris turpis, vulputate eget rhoncus vitae, mollis at magna. Donec non metus nec magna tincidunt ultrices. Cras sit amet nisl vestibulum dolor sollicitudin sagittis vestibulum eu nulla. Duis tempus semper libero, sed maximus nunc tristique sed.
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h1>2.</h1>
+                    Sed et orci eget nisl vestibulum venenatis nec rhoncus odio. Donec varius semper leo, in sollicitudin erat finibus at. Cras eu lorem libero. Etiam a rutrum ante. Duis pellentesque justo quam, vel laoreet augue aliquam vitae. Sed interdum, tortor sit amet semper venenatis, eros diam maximus nisi, ac viverra arcu nibh in elit. Pellentesque non felis magna. Nunc tincidunt nunc id cursus iaculis.
+                    Lorem ipsum dolor metus nisi, ac euismod justo fermentum nec. Aliquam vitae varius odio. Curabitur dictum rutrum neque vel aliquam. Fusce ullamcorper ante at risus ornare, in gravida lorem luctus. Aenean sapien dui, molestie sed ipsum vitae, pellentesque tempus sem. Duis suscipit eros vitae orci elementum pretium. Suspendisse eget faucibus lorem, ac tempor velit. Aenean vitae libero arcu. Mauris dictum egestas dui sed hendrerit. Phasellus nisi odio, vulputate a volutpat placerat, gravida a nulla. Nullam gravida nulla at iaculis imperdiet. Sed sed odio at purus posuere ultrices ut et nisl.
+                    Proin blandit lacus sit amet eleifend tristique. Praesent molestie ornare nisl, in vehicula risus dignissim eget. Praesent tellus ex, lacinia sit amet velit at, ornare pharetra ipsum. In hac habitasse platea dictumst. Morbi pretium at metus quis pharetra. Quisque vitae nulla ornare, blandit tortor quis, aliquam velit. Sed rhoncus in quam vitae tincidunt. Nulla iaculis erat vel nisi laoreet viverra. Sed vitae turpis suscipit, imperdiet leo ac, consequat lacus. Aliquam pharetra metus elit, in sollicitudin enim maximus ac. Vestibulum varius nisi vitae eleifend pulvinar. Nunc posuere tellus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet lorem sed consectetur pulvinar. Phasellus pulvinar dignissim sagittis.
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h1>3.</h1>
+                    Lorem ipsum dolor metus nisi, ac euismod justo fermentum nec. Aliquam vitae varius odio. Curabitur dictum rutrum neque vel aliquam. Fusce ullamcorper ante at risus ornare, in gravida lorem luctus. Aenean sapien dui, molestie sed ipsum vitae, pellentesque tempus sem. Duis suscipit eros vitae orci elementum pretium. Suspendisse eget faucibus lorem, ac tempor velit. Aenean vitae libero arcu. Mauris dictum egestas dui sed hendrerit. Phasellus nisi odio, vulputate a volutpat placerat, gravida a nulla. Nullam gravida nulla at iaculis imperdiet. Sed sed odio at purus posuere ultrices ut et nisl.
+                    Sed et orci eget nisl vestibulum venenatis nec rhoncus odio. Donec varius semper leo, in sollicitudin erat finibus at. Cras eu lorem libero. Etiam a rutrum ante. Duis pellentesque justo quam, vel laoreet augue aliquam vitae. Sed interdum, tortor sit amet semper venenatis, eros diam maximus nisi, ac viverra arcu nibh in elit. Pellentesque non felis magna. Nunc tincidunt nunc id cursus iaculis.
+                    Proin blandit lacus sit amet eleifend tristique. Praesent molestie ornare nisl, in vehicula risus dignissim eget. Praesent tellus ex, lacinia sit amet velit at, ornare pharetra ipsum. In hac habitasse platea dictumst. Morbi pretium at metus quis pharetra. Quisque vitae nulla ornare, blandit tortor quis, aliquam velit. Sed rhoncus in quam vitae tincidunt. Nulla iaculis erat vel nisi laoreet viverra. Sed vitae turpis suscipit, imperdiet leo ac, consequat lacus. Aliquam pharetra metus elit, in sollicitudin enim maximus ac. Vestibulum varius nisi vitae eleifend pulvinar. Nunc posuere tellus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet lorem sed consectetur pulvinar. Phasellus pulvinar dignissim sagittis.
+                </div>
+            </section>
+        </section>
+    </header>
+</body>
+</html>
