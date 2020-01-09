@@ -14,7 +14,7 @@
         }
 
         :root {
-            --tab-bar-height: 20px;
+            --tab-bar-height: 40px;
         }
         body {
             padding: 0;
@@ -30,6 +30,9 @@
             align-items: flex-end;
         }
         .tabs > a {
+            height: var(--tab-bar-height);
+            line-height: var(--tab-bar-height);
+            color: #000;
             z-index: 100;
             flex: 1 1 50%;
             background: #EEE;
@@ -50,7 +53,13 @@
             width: auto;
             height: 100vh;
             position: fixed;
-            transition: transform 0.333s ease-in-out;
+            transition: transform 0.222s ease-in-out;
+            will-change: transform;
+            transform: translateZ(0);
+        }
+
+        a:target {
+            background: #FFF;
         }
 
         .tabs > a:nth-child(1):target ~ .contents {
