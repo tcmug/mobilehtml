@@ -16,10 +16,13 @@
         :root {
             --tab-bar-height: 40px;
         }
+
         body {
             padding: 0;
             margin: 0;
             overflow: hidden;
+            user-select: none;
+            font-family: Arial, Helvetica, sans-serif;
         }
         .tabs {
             overflow: hidden;
@@ -40,7 +43,7 @@
             color: #000;
             text-decoration: none;
             border-right: 1px solid #BBB;
-            user-select: none;
+
         }
         .tabs > a:last-child {
             border-right: none;
@@ -48,8 +51,6 @@
         .tabs > .contents {
             overflow: hidden;
             display: flex;
-            left: 0;
-            top: 0;
             width: auto;
             height: 100vh;
             position: fixed;
@@ -86,8 +87,17 @@
         }
 
         .contents > section > div {
-            border: 1px solid black;
+            box-shadow: inset 0 0 10px #DDD;
+            height: auto;
+            width: auto;
+            display: block;
+            padding: 10px;
         }
+
+        h1, p {
+            margin: 16px;
+        }
+
     </style>
     <title>Mobile test</title>
 </head>
@@ -100,25 +110,43 @@
             <section>
                 <div>
                     <h1>1.</h1>
+                    <p>
                     Ut purus nunc, porttitor vel aliquam non, auctor id justo. Cras fermentum tempus dictum. In hac habitasse platea dictumst. Etiam euismod nunc vitae varius malesuada. Praesent sagittis massa dignissim aliquet interdum. Maecenas porttitor ac metus pharetra viverra. Phasellus a luctus tortor.
+                    </p>
+                    <p>
                     Integer venenatis sagittis porttitor. Nulla vitae nulla eu felis tristique pulvinar. In faucibus ultrices mattis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse eu mi accumsan, semper ex in, suscipit lacus. Vivamus eros ex, maximus a dignissim ac, egestas ut magna. Suspendisse est augue, pellentesque in aliquam vel, scelerisque tincidunt justo. Proin non orci tincidunt, scelerisque ipsum id, molestie sapien.
+                    </p>
+                    <p>
                     Aliquam consectetur finibus orci, gravida ornare metus dictum ultrices. Duis et molestie odio. Quisque pellentesque, lorem ac ultrices tristique, mi leo malesuada felis, sit amet posuere augue ipsum sit amet tortor. Donec ex leo, ullamcorper ac pellentesque et, ultrices ut quam. Curabitur sagittis sodales turpis et pellentesque. Vivamus quis turpis quis metus porttitor placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In malesuada sapien eget nibh rutrum, quis volutpat odio hendrerit. Sed sed dolor egestas, rutrum nunc ut, aliquam dui. Quisque feugiat feugiat turpis sed rhoncus. Maecenas viverra eleifend auctor. Donec venenatis magna vel magna lacinia scelerisque in at nisi. Morbi mauris turpis, vulputate eget rhoncus vitae, mollis at magna. Donec non metus nec magna tincidunt ultrices. Cras sit amet nisl vestibulum dolor sollicitudin sagittis vestibulum eu nulla. Duis tempus semper libero, sed maximus nunc tristique sed.
+                    </p>
                 </div>
             </section>
             <section>
                 <div>
                     <h1>2.</h1>
+                    <p>
                     Sed et orci eget nisl vestibulum venenatis nec rhoncus odio. Donec varius semper leo, in sollicitudin erat finibus at. Cras eu lorem libero. Etiam a rutrum ante. Duis pellentesque justo quam, vel laoreet augue aliquam vitae. Sed interdum, tortor sit amet semper venenatis, eros diam maximus nisi, ac viverra arcu nibh in elit. Pellentesque non felis magna. Nunc tincidunt nunc id cursus iaculis.
+                    </p>
+                    <p>
                     Lorem ipsum dolor metus nisi, ac euismod justo fermentum nec. Aliquam vitae varius odio. Curabitur dictum rutrum neque vel aliquam. Fusce ullamcorper ante at risus ornare, in gravida lorem luctus. Aenean sapien dui, molestie sed ipsum vitae, pellentesque tempus sem. Duis suscipit eros vitae orci elementum pretium. Suspendisse eget faucibus lorem, ac tempor velit. Aenean vitae libero arcu. Mauris dictum egestas dui sed hendrerit. Phasellus nisi odio, vulputate a volutpat placerat, gravida a nulla. Nullam gravida nulla at iaculis imperdiet. Sed sed odio at purus posuere ultrices ut et nisl.
+                    </p>
+                    <p>
                     Proin blandit lacus sit amet eleifend tristique. Praesent molestie ornare nisl, in vehicula risus dignissim eget. Praesent tellus ex, lacinia sit amet velit at, ornare pharetra ipsum. In hac habitasse platea dictumst. Morbi pretium at metus quis pharetra. Quisque vitae nulla ornare, blandit tortor quis, aliquam velit. Sed rhoncus in quam vitae tincidunt. Nulla iaculis erat vel nisi laoreet viverra. Sed vitae turpis suscipit, imperdiet leo ac, consequat lacus. Aliquam pharetra metus elit, in sollicitudin enim maximus ac. Vestibulum varius nisi vitae eleifend pulvinar. Nunc posuere tellus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet lorem sed consectetur pulvinar. Phasellus pulvinar dignissim sagittis.
+                    </p>
                 </div>
             </section>
             <section>
                 <div>
                     <h1>3.</h1>
+                    <p>
                     Lorem ipsum dolor metus nisi, ac euismod justo fermentum nec. Aliquam vitae varius odio. Curabitur dictum rutrum neque vel aliquam. Fusce ullamcorper ante at risus ornare, in gravida lorem luctus. Aenean sapien dui, molestie sed ipsum vitae, pellentesque tempus sem. Duis suscipit eros vitae orci elementum pretium. Suspendisse eget faucibus lorem, ac tempor velit. Aenean vitae libero arcu. Mauris dictum egestas dui sed hendrerit. Phasellus nisi odio, vulputate a volutpat placerat, gravida a nulla. Nullam gravida nulla at iaculis imperdiet. Sed sed odio at purus posuere ultrices ut et nisl.
+                    </p>
+                    <p>
                     Sed et orci eget nisl vestibulum venenatis nec rhoncus odio. Donec varius semper leo, in sollicitudin erat finibus at. Cras eu lorem libero. Etiam a rutrum ante. Duis pellentesque justo quam, vel laoreet augue aliquam vitae. Sed interdum, tortor sit amet semper venenatis, eros diam maximus nisi, ac viverra arcu nibh in elit. Pellentesque non felis magna. Nunc tincidunt nunc id cursus iaculis.
+                    </p>
+                    <p>
                     Proin blandit lacus sit amet eleifend tristique. Praesent molestie ornare nisl, in vehicula risus dignissim eget. Praesent tellus ex, lacinia sit amet velit at, ornare pharetra ipsum. In hac habitasse platea dictumst. Morbi pretium at metus quis pharetra. Quisque vitae nulla ornare, blandit tortor quis, aliquam velit. Sed rhoncus in quam vitae tincidunt. Nulla iaculis erat vel nisi laoreet viverra. Sed vitae turpis suscipit, imperdiet leo ac, consequat lacus. Aliquam pharetra metus elit, in sollicitudin enim maximus ac. Vestibulum varius nisi vitae eleifend pulvinar. Nunc posuere tellus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet lorem sed consectetur pulvinar. Phasellus pulvinar dignissim sagittis.
+                    </p>
                 </div>
             </section>
         </section>
