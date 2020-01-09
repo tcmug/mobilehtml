@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="manifest" href="/manifest.webmanifest">
     <style>
 
         a, button, input {
@@ -31,31 +31,32 @@
             width: 100vw;
             height: 100vh;
             display: flex;
-            z-index: 100;
             align-items: flex-end;
         }
 
         .tabs > a {
             height: var(--tab-bar-height);
             line-height: var(--tab-bar-height);
-            color: #000;
-            z-index: 100;
+            color: #000000;
             flex: 1 1 50%;
             background: #EEE;
             text-align: center;
             color: #000;
             text-decoration: none;
             border-right: 1px solid #BBB;
-
+            z-index: 0;
         }
+
         .tabs > a:last-child {
             border-right: none;
         }
+
         .tabs > .contents {
-            overflow: hidden;
+            z-index: 1;
             display: flex;
             width: auto;
-            height: 100vh;
+            top: 0;
+            height: calc(100vh - var(--tab-bar-height));
             position: fixed;
             transition: transform 0.222s ease-in-out;
             will-change: transform;
@@ -101,7 +102,8 @@
             margin: 16px;
         }
 
-        .contents a {
+        input[id="dialog"] {
+            -moz-appearance: none;
             display: inline-block;
             margin: 16px;
             width: auto;
@@ -112,19 +114,56 @@
             border: 1px solid black;
         }
 
-        section.dialog {
+        input[id="dialog"] + section.dialog {
             position: absolute;
             left: 0;
             top: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 400;
-            background: #800;
             display: none;
         }
 
-        section.dialog:target {
+        input[id="dialog"]:checked + section.dialog {
             display: block;
+        }
+
+        section.dialog > .blur {
+            z-index: 10;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.3;
+            background: #000;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10;
+        }
+
+        section.dialog > .content {
+            z-index: 11;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #FFF;
+            border-radius: 5px;
+            width: calc(100% - 64px);
+            height: calc(100% - 64px);
+            margin: 32px;
+        }
+
+        section.dialog > .content > .pad {
+            margin: 16px;
+        }
+
+        section.dialog label {
+            display: inline-block;
+            margin: 16px;
+            width: auto;
+            background: #AEE;
+            border-radius: 4px;
+            box-shadow: inset 0 0 3px #FFF;
+            padding: 5px;
+            border: 1px solid black;
         }
 
     </style>
@@ -148,7 +187,17 @@
                     <p>
                     Aliquam consectetur finibus orci, gravida ornare metus dictum ultrices. Duis et molestie odio. Quisque pellentesque, lorem ac ultrices tristique, mi leo malesuada felis, sit amet posuere augue ipsum sit amet tortor. Donec ex leo, ullamcorper ac pellentesque et, ultrices ut quam. Curabitur sagittis sodales turpis et pellentesque. Vivamus quis turpis quis metus porttitor placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In malesuada sapien eget nibh rutrum, quis volutpat odio hendrerit. Sed sed dolor egestas, rutrum nunc ut, aliquam dui. Quisque feugiat feugiat turpis sed rhoncus. Maecenas viverra eleifend auctor. Donec venenatis magna vel magna lacinia scelerisque in at nisi. Morbi mauris turpis, vulputate eget rhoncus vitae, mollis at magna. Donec non metus nec magna tincidunt ultrices. Cras sit amet nisl vestibulum dolor sollicitudin sagittis vestibulum eu nulla. Duis tempus semper libero, sed maximus nunc tristique sed.
                     </p>
-                    <a class="dialog" href="#dialog">Dialog</a>
+
+                    <input id="dialog" type="checkbox">Dialog</input>
+                    <section class="dialog">
+                        <div class="blur"></div>
+                        <div class="content">
+                            <div class="pad">
+                                A modal dialog
+                                <label for="dialog">Close</label>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </section>
             <section>
@@ -181,8 +230,6 @@
             </section>
         </section>
     </section>
-    <section class="dialog" id="dialog">
-        Hello
-    </section>
+
 </body>
 </html>
