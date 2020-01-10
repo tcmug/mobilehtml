@@ -45,7 +45,7 @@
             color: #000;
             text-decoration: none;
             border-right: 1px solid #BBB;
-            z-index: 0;
+            z-index: 2;
         }
 
         .tabs > a:last-child {
@@ -57,7 +57,7 @@
             display: flex;
             width: auto;
             top: 0;
-            height: calc(100vh - var(--tab-bar-height));
+            height: 100vh;
             position: fixed;
             transition: transform 0.222s ease-in-out;
             will-change: transform;
@@ -108,16 +108,35 @@
         }
 
         section.dialog {
+            z-index: 3;
             position: absolute;
             left: 0;
             top: 0;
             width: 100vw;
             height: 100vh;
-            display: none;
+            visibility: hidden;
+        }
+
+        section.dialog > .content {
+            visibility: hidden;
+            will-change: transform;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 0.2s, opacity 0.2s;
         }
 
         input[id="dialog"]:checked ~ section.dialog {
-            display: block;
+            visibility: visible;
+        }
+
+        input[id="dialog"]:checked ~ section.dialog > .content {
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        input[id="dialog"]:checked ~ section.dialog > .blur {
+            opacity: 0.3;
         }
 
         section.dialog > .blur {
@@ -125,11 +144,12 @@
             position: absolute;
             top: 0;
             left: 0;
-            opacity: 0.3;
+            opacity: 0;
             background: #000;
             width: 100vw;
             height: 100vh;
             z-index: 10;
+            transition: opacity 0.2s;
         }
 
         section.dialog > .content {
@@ -181,17 +201,9 @@
                     Aliquam consectetur finibus orci, gravida ornare metus dictum ultrices. Duis et molestie odio. Quisque pellentesque, lorem ac ultrices tristique, mi leo malesuada felis, sit amet posuere augue ipsum sit amet tortor. Donec ex leo, ullamcorper ac pellentesque et, ultrices ut quam. Curabitur sagittis sodales turpis et pellentesque. Vivamus quis turpis quis metus porttitor placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In malesuada sapien eget nibh rutrum, quis volutpat odio hendrerit. Sed sed dolor egestas, rutrum nunc ut, aliquam dui. Quisque feugiat feugiat turpis sed rhoncus. Maecenas viverra eleifend auctor. Donec venenatis magna vel magna lacinia scelerisque in at nisi. Morbi mauris turpis, vulputate eget rhoncus vitae, mollis at magna. Donec non metus nec magna tincidunt ultrices. Cras sit amet nisl vestibulum dolor sollicitudin sagittis vestibulum eu nulla. Duis tempus semper libero, sed maximus nunc tristique sed.
                     </p>
 
-                    <input id="dialog" type="checkbox">
-                    <label for="dialog" class="button">Close</label>
-                    <section class="dialog">
-                        <div class="blur"></div>
-                        <div class="content">
-                            <div class="pad">
-                                A modal dialog
-                                <label for="dialog" class="button">Close</label>
-                            </div>
-                        </div>
-                    </section>
+
+                    <label for="dialog" class="button">Open</label>
+
                 </div>
             </section>
             <section>
@@ -223,6 +235,17 @@
                 </div>
             </section>
         </section>
+    </section>
+
+    <input id="dialog" type="checkbox">
+    <section class="dialog">
+        <div class="blur"></div>
+        <div class="content">
+            <div class="pad">
+                A modal dialog
+                <label for="dialog" class="button">Close</label>
+            </div>
+        </div>
     </section>
 
 </body>
