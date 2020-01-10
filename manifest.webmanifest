@@ -1,9 +1,15 @@
 {
-    "short_name": "Test",
-    "name": "Test",
-    "start_url": "/index.html#1",
-    "background_color":"#E0E0E0",
-    "display": "fullscreen",
-    "scope": "/",
-    "theme_color": "#E0E0E0"
-  }
+  "short_name": "Test",
+  "name": "Test",
+  "start_url": "/index.html#1",
+  "display": "fullscreen",
+  "scope": "/",
+  "background_color": "#E0E0E0",
+  "theme_color": "#E0E0E0",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512"
+    }
+  ]
+}
