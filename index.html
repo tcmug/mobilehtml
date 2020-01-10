@@ -53,6 +53,11 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
+        .layer {
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+        }
+
         .tabs {
             z-index: 2;
             bottom: 0;
@@ -76,8 +81,6 @@
             text-transform: uppercase;
             font-weight: bold;
             border-right: 1px solid #BBB;
-            will-change: transform;
-            transform: translateZ(0);
         }
 
         .tabs > a:last-child {
@@ -91,8 +94,6 @@
             width: 300vw;
             height: calc(100% - var(--tab-bar-height));
             transition: transform var(--tab-transition-time);
-            will-change: transform;
-            transform: translateZ(0);
         }
 
         a:target {
@@ -119,8 +120,6 @@
             width: 100vw;
             height: 100%;
             color: var(--color-black);
-            will-change: transform;
-            transform: translateZ(0);
         }
 
         .contents > section > div {
@@ -159,7 +158,6 @@
 
         section.dialog > .content {
             visibility: hidden;
-            will-change: transform;
             transform: scale(0.9);
             opacity: 0;
             transition: transform var(--dialog-fade-time), opacity var(--dialog-fade-time), visibility var(--dialog-fade-time);
@@ -243,7 +241,7 @@
     <a id="tab3"></a>
 
     <!-- Tab contents. -->
-    <section class="contents">
+    <section class="contents layer">
         <section>
             <div>
                 <h1>1.</h1>
@@ -289,7 +287,7 @@
         </section>
     </section>
 
-    <section class="tabs">
+    <section class="tabs layer">
         <a href="#tab1">Left</a>
         <a href="#tab2">Center</a>
         <a href="#tab3">Right</a>
@@ -297,7 +295,7 @@
 
     <!-- Each dialog must have a checkbox for storing open state. -->
     <input id="dialog1" type="checkbox">
-    <section class="dialog">
+    <section class="dialog layer">
         <div class="blur"></div>
         <div class="content">
             <div class="pad">
