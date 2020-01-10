@@ -15,7 +15,6 @@
             --tab-bar-height: 40px;
             --dialog-fade-time: 0.15s ease-in-out;
             --tab-transition-time: 0.15s ease-in-out;
-
             --color-black: #101010;
             --color-super-black: #000;
         }
@@ -72,13 +71,12 @@
             border-right: none;
         }
 
-        .tabs > .contents {
+        body > .contents {
             z-index: 2;
             display: flex;
-            width: auto;
-            top: 0;
-            height: 100vh;
             position: absolute;
+            width: auto;
+            height: calc(100vh - var(--tab-bar-height));
             transition: transform var(--tab-transition-time);
             will-change: transform;
             transform: translateZ(0);
@@ -88,26 +86,26 @@
             background: #FFF;
         }
 
-        .tabs > a:nth-child(1):target ~ .contents {
+        body > a:nth-child(1):target ~ .contents {
             transform: translateX(0);
         }
 
-        .tabs > a:nth-child(2):target ~ .contents {
+        body > a:nth-child(2):target ~ .contents {
             transform: translateX(-100vw);
         }
 
-        .tabs > a:nth-child(3):target ~ .contents {
+        body > a:nth-child(3):target ~ .contents {
             transform: translateX(-200vw);
         }
 
-        .tabs > .contents > section {
+        body > .contents > section {
             flex: 1 1 100%;
             overflow-x: hidden;
             overflow-y: scroll;
             -webkit-overflow-scrolling: touch;
             background: #FFF;
             width: 100vw;
-            height: calc(100vh - var(--tab-bar-height));
+            height: 100%;
             color: var(--color-black);
         }
 
@@ -145,17 +143,17 @@
             transition: transform var(--dialog-fade-time), opacity var(--dialog-fade-time), visibility var(--dialog-fade-time);
         }
 
-        input[id="dialog"]:checked ~ section.dialog {
+        input[id="dialog1"]:checked ~ section.dialog {
             visibility: visible;
         }
 
-        input[id="dialog"]:checked ~ section.dialog > .content {
+        input[id="dialog1"]:checked ~ section.dialog > .content {
             visibility: visible;
             opacity: 1;
             transform: scale(1);
         }
 
-        input[id="dialog"]:checked ~ section.dialog > .blur {
+        input[id="dialog1"]:checked ~ section.dialog > .blur {
             opacity: 0.3;
         }
 
@@ -211,65 +209,74 @@
     <title>Mobile test</title>
 </head>
 <body>
-    <section class="tabs">
-        <a id="1" href="#1">Left</a>
-        <a id="2" href="#2">Center</a>
-        <a id="3" href="#3">Right</a>
-        <section class="contents">
-            <section>
-                <div>
-                    <h1>1.</h1>
-                    <p>
-                    Ut purus nunc, porttitor vel aliquam non, auctor id justo. Cras fermentum tempus dictum. In hac habitasse platea dictumst. Etiam euismod nunc vitae varius malesuada. Praesent sagittis massa dignissim aliquet interdum. Maecenas porttitor ac metus pharetra viverra. Phasellus a luctus tortor.
-                    </p>
-                    <label for="dialog" class="button">Open</label>
-                    <p>
-                    Integer venenatis sagittis porttitor. Nulla vitae nulla eu felis tristique pulvinar. In faucibus ultrices mattis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse eu mi accumsan, semper ex in, suscipit lacus. Vivamus eros ex, maximus a dignissim ac, egestas ut magna. Suspendisse est augue, pellentesque in aliquam vel, scelerisque tincidunt justo. Proin non orci tincidunt, scelerisque ipsum id, molestie sapien.
-                    </p>
-                    <p>
-                    Aliquam consectetur finibus orci, gravida ornare metus dictum ultrices. Duis et molestie odio. Quisque pellentesque, lorem ac ultrices tristique, mi leo malesuada felis, sit amet posuere augue ipsum sit amet tortor. Donec ex leo, ullamcorper ac pellentesque et, ultrices ut quam. Curabitur sagittis sodales turpis et pellentesque. Vivamus quis turpis quis metus porttitor placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In malesuada sapien eget nibh rutrum, quis volutpat odio hendrerit. Sed sed dolor egestas, rutrum nunc ut, aliquam dui. Quisque feugiat feugiat turpis sed rhoncus. Maecenas viverra eleifend auctor. Donec venenatis magna vel magna lacinia scelerisque in at nisi. Morbi mauris turpis, vulputate eget rhoncus vitae, mollis at magna. Donec non metus nec magna tincidunt ultrices. Cras sit amet nisl vestibulum dolor sollicitudin sagittis vestibulum eu nulla. Duis tempus semper libero, sed maximus nunc tristique sed.
-                    </p>
-                </div>
-            </section>
-            <section>
-                <div>
-                    <h1>2.</h1>
-                    <p>
-                    Sed et orci eget nisl vestibulum venenatis nec rhoncus odio. Donec varius semper leo, in sollicitudin erat finibus at. Cras eu lorem libero. Etiam a rutrum ante. Duis pellentesque justo quam, vel laoreet augue aliquam vitae. Sed interdum, tortor sit amet semper venenatis, eros diam maximus nisi, ac viverra arcu nibh in elit. Pellentesque non felis magna. Nunc tincidunt nunc id cursus iaculis.
-                    </p>
-                    <p>
-                    Lorem ipsum dolor metus nisi, ac euismod justo fermentum nec. Aliquam vitae varius odio. Curabitur dictum rutrum neque vel aliquam. Fusce ullamcorper ante at risus ornare, in gravida lorem luctus. Aenean sapien dui, molestie sed ipsum vitae, pellentesque tempus sem. Duis suscipit eros vitae orci elementum pretium. Suspendisse eget faucibus lorem, ac tempor velit. Aenean vitae libero arcu. Mauris dictum egestas dui sed hendrerit. Phasellus nisi odio, vulputate a volutpat placerat, gravida a nulla. Nullam gravida nulla at iaculis imperdiet. Sed sed odio at purus posuere ultrices ut et nisl.
-                    </p>
-                    <p>
-                    Proin blandit lacus sit amet eleifend tristique. Praesent molestie ornare nisl, in vehicula risus dignissim eget. Praesent tellus ex, lacinia sit amet velit at, ornare pharetra ipsum. In hac habitasse platea dictumst. Morbi pretium at metus quis pharetra. Quisque vitae nulla ornare, blandit tortor quis, aliquam velit. Sed rhoncus in quam vitae tincidunt. Nulla iaculis erat vel nisi laoreet viverra. Sed vitae turpis suscipit, imperdiet leo ac, consequat lacus. Aliquam pharetra metus elit, in sollicitudin enim maximus ac. Vestibulum varius nisi vitae eleifend pulvinar. Nunc posuere tellus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet lorem sed consectetur pulvinar. Phasellus pulvinar dignissim sagittis.
-                    </p>
-                </div>
-            </section>
-            <section>
-                <div>
-                    <h1>3.</h1>
-                    <p>
-                    Lorem ipsum dolor metus nisi, ac euismod justo fermentum nec. Aliquam vitae varius odio. Curabitur dictum rutrum neque vel aliquam. Fusce ullamcorper ante at risus ornare, in gravida lorem luctus. Aenean sapien dui, molestie sed ipsum vitae, pellentesque tempus sem. Duis suscipit eros vitae orci elementum pretium. Suspendisse eget faucibus lorem, ac tempor velit. Aenean vitae libero arcu. Mauris dictum egestas dui sed hendrerit. Phasellus nisi odio, vulputate a volutpat placerat, gravida a nulla. Nullam gravida nulla at iaculis imperdiet. Sed sed odio at purus posuere ultrices ut et nisl.
-                    </p>
-                    <p>
-                    Sed et orci eget nisl vestibulum venenatis nec rhoncus odio. Donec varius semper leo, in sollicitudin erat finibus at. Cras eu lorem libero. Etiam a rutrum ante. Duis pellentesque justo quam, vel laoreet augue aliquam vitae. Sed interdum, tortor sit amet semper venenatis, eros diam maximus nisi, ac viverra arcu nibh in elit. Pellentesque non felis magna. Nunc tincidunt nunc id cursus iaculis.
-                    </p>
-                    <p>
-                    Proin blandit lacus sit amet eleifend tristique. Praesent molestie ornare nisl, in vehicula risus dignissim eget. Praesent tellus ex, lacinia sit amet velit at, ornare pharetra ipsum. In hac habitasse platea dictumst. Morbi pretium at metus quis pharetra. Quisque vitae nulla ornare, blandit tortor quis, aliquam velit. Sed rhoncus in quam vitae tincidunt. Nulla iaculis erat vel nisi laoreet viverra. Sed vitae turpis suscipit, imperdiet leo ac, consequat lacus. Aliquam pharetra metus elit, in sollicitudin enim maximus ac. Vestibulum varius nisi vitae eleifend pulvinar. Nunc posuere tellus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet lorem sed consectetur pulvinar. Phasellus pulvinar dignissim sagittis.
-                    </p>
-                </div>
-            </section>
+
+    <!-- Each tab MUST have a pseudo target. -->
+    <a id="tab1"></a>
+    <a id="tab2"></a>
+    <a id="tab3"></a>
+
+    <!-- Tab contents. -->
+    <section class="contents">
+        <section>
+            <div>
+                <h1>1.</h1>
+                <p>
+                Ut purus nunc, porttitor vel aliquam non, auctor id justo. Cras fermentum tempus dictum. In hac habitasse platea dictumst. Etiam euismod nunc vitae varius malesuada. Praesent sagittis massa dignissim aliquet interdum. Maecenas porttitor ac metus pharetra viverra. Phasellus a luctus tortor.
+                </p>
+                <label for="dialog1" class="button">Open</label>
+                <p>
+                Integer venenatis sagittis porttitor. Nulla vitae nulla eu felis tristique pulvinar. In faucibus ultrices mattis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse eu mi accumsan, semper ex in, suscipit lacus. Vivamus eros ex, maximus a dignissim ac, egestas ut magna. Suspendisse est augue, pellentesque in aliquam vel, scelerisque tincidunt justo. Proin non orci tincidunt, scelerisque ipsum id, molestie sapien.
+                </p>
+                <p>
+                Aliquam consectetur finibus orci, gravida ornare metus dictum ultrices. Duis et molestie odio. Quisque pellentesque, lorem ac ultrices tristique, mi leo malesuada felis, sit amet posuere augue ipsum sit amet tortor. Donec ex leo, ullamcorper ac pellentesque et, ultrices ut quam. Curabitur sagittis sodales turpis et pellentesque. Vivamus quis turpis quis metus porttitor placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In malesuada sapien eget nibh rutrum, quis volutpat odio hendrerit. Sed sed dolor egestas, rutrum nunc ut, aliquam dui. Quisque feugiat feugiat turpis sed rhoncus. Maecenas viverra eleifend auctor. Donec venenatis magna vel magna lacinia scelerisque in at nisi. Morbi mauris turpis, vulputate eget rhoncus vitae, mollis at magna. Donec non metus nec magna tincidunt ultrices. Cras sit amet nisl vestibulum dolor sollicitudin sagittis vestibulum eu nulla. Duis tempus semper libero, sed maximus nunc tristique sed.
+                </p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h1>2.</h1>
+                <p>
+                Sed et orci eget nisl vestibulum venenatis nec rhoncus odio. Donec varius semper leo, in sollicitudin erat finibus at. Cras eu lorem libero. Etiam a rutrum ante. Duis pellentesque justo quam, vel laoreet augue aliquam vitae. Sed interdum, tortor sit amet semper venenatis, eros diam maximus nisi, ac viverra arcu nibh in elit. Pellentesque non felis magna. Nunc tincidunt nunc id cursus iaculis.
+                </p>
+                <p>
+                Lorem ipsum dolor metus nisi, ac euismod justo fermentum nec. Aliquam vitae varius odio. Curabitur dictum rutrum neque vel aliquam. Fusce ullamcorper ante at risus ornare, in gravida lorem luctus. Aenean sapien dui, molestie sed ipsum vitae, pellentesque tempus sem. Duis suscipit eros vitae orci elementum pretium. Suspendisse eget faucibus lorem, ac tempor velit. Aenean vitae libero arcu. Mauris dictum egestas dui sed hendrerit. Phasellus nisi odio, vulputate a volutpat placerat, gravida a nulla. Nullam gravida nulla at iaculis imperdiet. Sed sed odio at purus posuere ultrices ut et nisl.
+                </p>
+                <p>
+                Proin blandit lacus sit amet eleifend tristique. Praesent molestie ornare nisl, in vehicula risus dignissim eget. Praesent tellus ex, lacinia sit amet velit at, ornare pharetra ipsum. In hac habitasse platea dictumst. Morbi pretium at metus quis pharetra. Quisque vitae nulla ornare, blandit tortor quis, aliquam velit. Sed rhoncus in quam vitae tincidunt. Nulla iaculis erat vel nisi laoreet viverra. Sed vitae turpis suscipit, imperdiet leo ac, consequat lacus. Aliquam pharetra metus elit, in sollicitudin enim maximus ac. Vestibulum varius nisi vitae eleifend pulvinar. Nunc posuere tellus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet lorem sed consectetur pulvinar. Phasellus pulvinar dignissim sagittis.
+                </p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <h1>3.</h1>
+                <p>
+                Lorem ipsum dolor metus nisi, ac euismod justo fermentum nec. Aliquam vitae varius odio. Curabitur dictum rutrum neque vel aliquam. Fusce ullamcorper ante at risus ornare, in gravida lorem luctus. Aenean sapien dui, molestie sed ipsum vitae, pellentesque tempus sem. Duis suscipit eros vitae orci elementum pretium. Suspendisse eget faucibus lorem, ac tempor velit. Aenean vitae libero arcu. Mauris dictum egestas dui sed hendrerit. Phasellus nisi odio, vulputate a volutpat placerat, gravida a nulla. Nullam gravida nulla at iaculis imperdiet. Sed sed odio at purus posuere ultrices ut et nisl.
+                </p>
+                <p>
+                Sed et orci eget nisl vestibulum venenatis nec rhoncus odio. Donec varius semper leo, in sollicitudin erat finibus at. Cras eu lorem libero. Etiam a rutrum ante. Duis pellentesque justo quam, vel laoreet augue aliquam vitae. Sed interdum, tortor sit amet semper venenatis, eros diam maximus nisi, ac viverra arcu nibh in elit. Pellentesque non felis magna. Nunc tincidunt nunc id cursus iaculis.
+                </p>
+                <p>
+                Proin blandit lacus sit amet eleifend tristique. Praesent molestie ornare nisl, in vehicula risus dignissim eget. Praesent tellus ex, lacinia sit amet velit at, ornare pharetra ipsum. In hac habitasse platea dictumst. Morbi pretium at metus quis pharetra. Quisque vitae nulla ornare, blandit tortor quis, aliquam velit. Sed rhoncus in quam vitae tincidunt. Nulla iaculis erat vel nisi laoreet viverra. Sed vitae turpis suscipit, imperdiet leo ac, consequat lacus. Aliquam pharetra metus elit, in sollicitudin enim maximus ac. Vestibulum varius nisi vitae eleifend pulvinar. Nunc posuere tellus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet lorem sed consectetur pulvinar. Phasellus pulvinar dignissim sagittis.
+                </p>
+            </div>
         </section>
     </section>
 
-    <input id="dialog" type="checkbox">
+    <section class="tabs">
+        <a href="#tab1">Left</a>
+        <a href="#tab2">Center</a>
+        <a href="#tab3">Right</a>
+    </section>
+
+    <!-- Each dialog must have a checkbox for storing open state. -->
+    <input id="dialog1" type="checkbox">
     <section class="dialog">
         <div class="blur"></div>
         <div class="content">
             <div class="pad">
                 A modal dialog
-                <label for="dialog" class="button red">Close</label>
-                <label for="dialog" class="button">OK</label>
+                <label for="dialog1" class="button red">Close</label>
+                <label for="dialog1" class="button">OK</label>
             </div>
         </div>
     </section>
