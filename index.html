@@ -47,10 +47,10 @@
         }
 
         .tabs {
-            z-index: 1;
-            position: fixed;
+            z-index: 2;
             bottom: 0;
             width: 100vw;
+            position: absolute;
             display: flex;
             align-items: flex-end;
             overflow: hidden;
@@ -69,7 +69,8 @@
             text-transform: uppercase;
             font-weight: bold;
             border-right: 1px solid #BBB;
-            z-index: 3;
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         .tabs > a:last-child {
@@ -77,7 +78,7 @@
         }
 
         body > .contents {
-            z-index: 2;
+            z-index: 1;
             display: flex;
             position: absolute;
             width: auto;
