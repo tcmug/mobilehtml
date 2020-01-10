@@ -32,6 +32,7 @@
             height: 100vh;
             display: flex;
             align-items: flex-end;
+            overflow: hidden;
         }
 
         .tabs > a {
@@ -103,18 +104,10 @@
         }
 
         input[id="dialog"] {
-            -moz-appearance: none;
-            display: inline-block;
-            margin: 16px;
-            width: auto;
-            background: #AEE;
-            border-radius: 4px;
-            box-shadow: inset 0 0 3px #FFF;
-            padding: 5px;
-            border: 1px solid black;
+            display: none;
         }
 
-        input[id="dialog"] + section.dialog {
+        section.dialog {
             position: absolute;
             left: 0;
             top: 0;
@@ -123,7 +116,7 @@
             display: none;
         }
 
-        input[id="dialog"]:checked + section.dialog {
+        input[id="dialog"]:checked ~ section.dialog {
             display: block;
         }
 
@@ -155,7 +148,7 @@
             margin: 16px;
         }
 
-        section.dialog label {
+        label.button {
             display: inline-block;
             margin: 16px;
             width: auto;
@@ -188,13 +181,14 @@
                     Aliquam consectetur finibus orci, gravida ornare metus dictum ultrices. Duis et molestie odio. Quisque pellentesque, lorem ac ultrices tristique, mi leo malesuada felis, sit amet posuere augue ipsum sit amet tortor. Donec ex leo, ullamcorper ac pellentesque et, ultrices ut quam. Curabitur sagittis sodales turpis et pellentesque. Vivamus quis turpis quis metus porttitor placerat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In malesuada sapien eget nibh rutrum, quis volutpat odio hendrerit. Sed sed dolor egestas, rutrum nunc ut, aliquam dui. Quisque feugiat feugiat turpis sed rhoncus. Maecenas viverra eleifend auctor. Donec venenatis magna vel magna lacinia scelerisque in at nisi. Morbi mauris turpis, vulputate eget rhoncus vitae, mollis at magna. Donec non metus nec magna tincidunt ultrices. Cras sit amet nisl vestibulum dolor sollicitudin sagittis vestibulum eu nulla. Duis tempus semper libero, sed maximus nunc tristique sed.
                     </p>
 
-                    <input id="dialog" type="checkbox">Dialog</input>
+                    <input id="dialog" type="checkbox">
+                    <label for="dialog" class="button">Close</label>
                     <section class="dialog">
                         <div class="blur"></div>
                         <div class="content">
                             <div class="pad">
                                 A modal dialog
-                                <label for="dialog">Close</label>
+                                <label for="dialog" class="button">Close</label>
                             </div>
                         </div>
                     </section>
