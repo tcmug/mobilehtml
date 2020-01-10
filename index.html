@@ -15,11 +15,16 @@
             --tab-bar-height: 40px;
             --dialog-fade-time: 0.15s ease-in-out;
             --tab-transition-time: 0.15s ease-in-out;
+
+            --color-black: #101010;
+            --color-super-black: #000;
         }
 
         html, body {
             position: fixed;
             overflow: hidden;
+            overscroll-behavior: none;
+            color: var(--color-black);
         }
 
         body {
@@ -39,28 +44,28 @@
         }
 
         .tabs {
-            overflow: hidden;
-            overscroll-behavior: none;
+            z-index: 1;
             width: 100vw;
             height: 100vh;
             display: flex;
             align-items: flex-end;
+            overflow: hidden;
+            overscroll-behavior: none;
         }
 
         .tabs > a {
             height: var(--tab-bar-height);
             line-height: var(--tab-bar-height);
-            color: #000000;
+            color: var(--color-black);
             flex: 1 1 50%;
             background: #EEE;
             text-align: center;
-            color: #000;
             text-decoration: none;
             font-size: 16px;
             text-transform: uppercase;
             font-weight: bold;
             border-right: 1px solid #BBB;
-            z-index: 2;
+            z-index: 3;
         }
 
         .tabs > a:last-child {
@@ -68,12 +73,12 @@
         }
 
         .tabs > .contents {
-            z-index: 1;
+            z-index: 2;
             display: flex;
             width: auto;
             top: 0;
             height: 100vh;
-            position: fixed;
+            position: absolute;
             transition: transform var(--tab-transition-time);
             will-change: transform;
             transform: translateZ(0);
@@ -103,7 +108,7 @@
             background: #FFF;
             width: 100vw;
             height: calc(100vh - var(--tab-bar-height));
-            color: #000;
+            color: var(--color-black);
         }
 
         .contents > section > div {
@@ -160,7 +165,7 @@
             top: 0;
             left: 0;
             opacity: 0;
-            background: #000;
+            background: var(--color-black);
             width: 100vw;
             height: 100vh;
             z-index: 10;
