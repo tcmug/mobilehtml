@@ -43,8 +43,6 @@
 
         body {
             overscroll-behavior: none;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
             padding: 0;
             margin: 0;
             width: 100vw;
@@ -53,11 +51,6 @@
             overflow: hidden;
             background: var(--color-grey);
             font-family: Arial, Helvetica, sans-serif;
-            transform: translate3d(0, 0, 0);
-        }
-
-        .layer {
-            transform: translate3d(0, 0, 0);
         }
 
         .tabs {
@@ -96,6 +89,7 @@
             width: 300vw;
             height: calc(100% - var(--tab-bar-height));
             transition: transform var(--tab-transition-time);
+            will-change: transform;
         }
 
         a:target {
@@ -160,6 +154,7 @@
 
         section.dialog > .content {
             visibility: hidden;
+            will-change: transform opacity;
             transform: scale(0.9);
             opacity: 0;
             transition: transform var(--dialog-fade-time), opacity var(--dialog-fade-time), visibility var(--dialog-fade-time);
@@ -244,7 +239,7 @@
 
     <!-- Tab contents. -->
     <section class="contents">
-        <section class="layer">
+        <section>
             <div>
                 <h1>1.</h1>
                 <p>
@@ -259,7 +254,7 @@
                 </p>
             </div>
         </section>
-        <section class="layer">
+        <section>
             <div>
                 <h1>2.</h1>
                 <p>
@@ -273,7 +268,7 @@
                 </p>
             </div>
         </section>
-        <section class="layer">
+        <section>
             <div>
                 <h1>3.</h1>
                 <p>
@@ -289,7 +284,7 @@
         </section>
     </section>
 
-    <section class="tabs layer">
+    <section class="tabs">
         <a href="#tab1">Left</a>
         <a href="#tab2">Center</a>
         <a href="#tab3">Right</a>
@@ -297,7 +292,7 @@
 
     <!-- Each dialog must have a checkbox for storing open state. -->
     <input id="dialog1" type="checkbox">
-    <section class="dialog layer">
+    <section class="dialog">
         <div class="blur"></div>
         <div class="content">
             <div class="pad">
