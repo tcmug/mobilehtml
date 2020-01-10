@@ -13,6 +13,8 @@
 
         :root {
             --tab-bar-height: 40px;
+            --dialog-fade-time: 0.15s ease-in-out;
+            --tab-transition-time: 0.15s ease-in-out;
         }
 
         body {
@@ -26,7 +28,8 @@
             -moz-user-select: none; /* Old versions of Firefox */
             -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
-                             supported by Chrome, Opera and Firefox */
+                                    supported by Chrome, Opera and Firefox */
+
         }
 
         .tabs {
@@ -62,7 +65,7 @@
             top: 0;
             height: 100vh;
             position: fixed;
-            transition: transform 0.222s ease-in-out;
+            transition: transform var(--tab-transition-time);
             will-change: transform;
             transform: translateZ(0);
         }
@@ -125,7 +128,7 @@
             will-change: transform;
             transform: scale(0.9);
             opacity: 0;
-            transition: transform 0.2s, opacity 0.2s;
+            transition: transform var(--dialog-fade-time), opacity var(--dialog-fade-time), visibility var(--dialog-fade-time);
         }
 
         input[id="dialog"]:checked ~ section.dialog {
