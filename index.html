@@ -181,13 +181,14 @@
         }
 
         section.dialog > .content {
+            position: relative;
             vertical-align: center;
             visibility: hidden;
             will-change: transform opacity;
             transform: scale(0.9);
             opacity: 0;
             transition: transform var(--dialog-fade-time), opacity var(--dialog-fade-time), visibility var(--dialog-fade-time);
-            z-index: 11;
+            z-index: 12;
             display: flex;
             min-height: 100%;
             align-items: center;
