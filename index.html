@@ -96,6 +96,7 @@
             background: #FFF;
         }
 
+        /* Implement tab switching by transforming the contents container X position. */
         body > a:nth-child(1):target ~ .contents {
             transform: translateX(0);
         }
@@ -129,58 +130,45 @@
             padding: 10px;
         }
 
+        /* Hide the pseudo links. */
         body > a {
             display: none;
         }
 
-        h1, p {
-            margin: 16px;
-        }
-
-        input[id="dialog"] {
-            display: none;
-        }
-
-        section.dialog {
+        body > section.dialog {
             z-index: 3;
-            position: fixed;
-            left: 0;
-            top: 0;
+            overflow: scroll;
+            height: 100%;
             width: 100vw;
-            min-height: 100vh;
-            min-height: -webkit-fill-available;
+            position: fixed;
             visibility: hidden;
+            top: 0;
+            left: 0;
         }
 
-        section.dialog > .content {
-            visibility: hidden;
-            will-change: transform opacity;
-            transform: scale(0.9);
-            opacity: 0;
-            transition: transform var(--dialog-fade-time), opacity var(--dialog-fade-time), visibility var(--dialog-fade-time);
-        }
-
-        input[id="dialog1"] {
+        body > input[type="checkbox"] {
             display: none;
         }
 
-        input[id="dialog1"]:checked ~ section.dialog {
+        body > input[type="checkbox"]:checked + section.dialog {
             visibility: visible;
         }
 
-        input[id="dialog1"]:checked ~ section.dialog > .content {
+        body >  input[type="checkbox"]:checked + section.dialog > .content {
             visibility: visible;
             opacity: 1;
             transform: scale(1);
         }
 
-        input[id="dialog1"]:checked ~ section.dialog > .blur {
-            opacity: 0.3;
+        body > input[type="checkbox"]:checked + section.dialog > .blur {
+            opacity: 0.5;
         }
+
+        /* The background blur. */
 
         section.dialog > .blur {
             z-index: 10;
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             opacity: 0;
@@ -193,20 +181,31 @@
         }
 
         section.dialog > .content {
+            vertical-align: center;
+            visibility: hidden;
+            will-change: transform opacity;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform var(--dialog-fade-time), opacity var(--dialog-fade-time), visibility var(--dialog-fade-time);
             z-index: 11;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: #FFF;
-            border-radius: 5px;
-            width: calc(100% - 64px);
-            height: calc(100% - 64px);
-            margin: 32px;
+            display: flex;
+            min-height: 100%;
+            align-items: center;
+            align-content: center;
         }
 
-        section.dialog > .content > .pad {
+        section.dialog .content .frame {
+            border-radius: 5px;
+            display: inline-block;
+            margin: 32px;
+            background: #FFF;
+        }
+
+        section.dialog > .content .pad {
             margin: 16px;
         }
+
+        /* Some styling for label "buttons" and text. */
 
         label.button {
             display: inline-block;
@@ -227,12 +226,17 @@
             border: 2px sold rgb(109, 46, 62);
         }
 
+        h1, p {
+            margin: 16px;
+        }
+
+
     </style>
     <title>Mobile test</title>
 </head>
 <body>
 
-    <!-- Each tab MUST have a pseudo target. -->
+    <!-- Each tab MUST have a pseudo target, this is used as a css selector for the content. -->
     <a id="tab1"></a>
     <a id="tab2"></a>
     <a id="tab3"></a>
@@ -260,6 +264,7 @@
                 <p>
                 Sed et orci eget nisl vestibulum venenatis nec rhoncus odio. Donec varius semper leo, in sollicitudin erat finibus at. Cras eu lorem libero. Etiam a rutrum ante. Duis pellentesque justo quam, vel laoreet augue aliquam vitae. Sed interdum, tortor sit amet semper venenatis, eros diam maximus nisi, ac viverra arcu nibh in elit. Pellentesque non felis magna. Nunc tincidunt nunc id cursus iaculis.
                 </p>
+                <label for="dialog2" class="button">Test</label>
                 <p>
                 Lorem ipsum dolor metus nisi, ac euismod justo fermentum nec. Aliquam vitae varius odio. Curabitur dictum rutrum neque vel aliquam. Fusce ullamcorper ante at risus ornare, in gravida lorem luctus. Aenean sapien dui, molestie sed ipsum vitae, pellentesque tempus sem. Duis suscipit eros vitae orci elementum pretium. Suspendisse eget faucibus lorem, ac tempor velit. Aenean vitae libero arcu. Mauris dictum egestas dui sed hendrerit. Phasellus nisi odio, vulputate a volutpat placerat, gravida a nulla. Nullam gravida nulla at iaculis imperdiet. Sed sed odio at purus posuere ultrices ut et nisl.
                 </p>
@@ -284,21 +289,42 @@
         </section>
     </section>
 
+    <!-- The actual tabs in the bottom of the screen, these reference the pseudo targets. -->
     <section class="tabs">
         <a href="#tab1">Left</a>
         <a href="#tab2">Center</a>
         <a href="#tab3">Right</a>
     </section>
 
-    <!-- Each dialog must have a checkbox for storing open state. -->
+    <!-- Dialogs -->
+
+    <!-- Each dialog must have a checkbox for storing open state followed by the dialog section. -->
     <input id="dialog1" type="checkbox">
     <section class="dialog">
         <div class="blur"></div>
         <div class="content">
-            <div class="pad">
-                A modal dialog
-                <label for="dialog1" class="button red">Close</label>
-                <label for="dialog1" class="button">OK</label>
+            <div class="frame">
+                <!-- Actual content goes here. -->
+                <div class="pad">
+                    A modal dialog
+                    <label for="dialog1" class="button red">Close</label>
+                    <label for="dialog1" class="button">OK</label>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Another dialog. Note the id for the checkbox; open / close button labels reference this. -->
+    <input id="dialog2" type="checkbox">
+    <section class="dialog">
+        <div class="blur"></div>
+        <div class="content">
+            <div class="frame">
+                <div class="pad">
+                    <h2>Another modal dialog</h2>
+                    <p>Proin blandit lacus sit amet eleifend tristique. Praesent molestie ornare nisl, in vehicula risus dignissim eget. Praesent tellus ex, lacinia sit amet velit at, ornare pharetra ipsum. In hac habitasse platea dictumst. Morbi pretium at metus quis pharetra. Quisque vitae nulla ornare, blandit tortor quis, aliquam velit. Sed rhoncus in quam vitae tincidunt. Nulla iaculis erat vel nisi laoreet viverra. Sed vitae turpis suscipit, imperdiet leo ac, consequat lacus. Aliquam pharetra metus elit, in sollicitudin enim maximus ac. Vestibulum varius nisi vitae eleifend pulvinar. Nunc posuere tellus purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus aliquet lorem sed consectetur pulvinar. Phasellus pulvinar dignissim sagittis.</p>
+                    <label for="dialog2" class="button">OK</label>
+                </div>
             </div>
         </div>
     </section>
